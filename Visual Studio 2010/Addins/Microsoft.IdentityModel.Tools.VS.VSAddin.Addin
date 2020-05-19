@@ -1,0 +1,28 @@
+<?xml version="1.0" standalone="no"?>
+<Extensibility xmlns="http://schemas.microsoft.com/AutomationExtensibility">
+  <HostApplication>
+    <Name>Microsoft Visual Studio Macros</Name>
+    <Version>9.0</Version>
+  </HostApplication>
+  <HostApplication>
+    <Name>Microsoft Visual Studio</Name>
+    <Version>9.0</Version>
+  </HostApplication>
+  <HostApplication>
+    <Name>Microsoft Visual Studio Macros</Name>
+    <Version>10.0</Version>
+  </HostApplication>
+  <HostApplication>
+    <Name>Microsoft Visual Studio</Name>
+    <Version>10.0</Version>
+  </HostApplication>
+  <Addin>
+    <FriendlyName>Windows Identity Foundation Add-in</FriendlyName>
+    <Description>This add-in is installed as part of the Windows Identity Foundation SDK and helps to make the applications claims-aware or federation-capable.</Description>
+    <Assembly>Microsoft.IdentityModel.Tools.VS, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL</Assembly>
+    <FullClassName>Microsoft.IdentityModel.Tools.VS.VSAddin.FederationAddin</FullClassName>
+    <LoadBehavior>1</LoadBehavior>
+    <CommandPreload>1</CommandPreload>
+    <CommandLineSafe>0</CommandLineSafe>
+  </Addin>
+</Extensibility>

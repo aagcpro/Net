@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Report"
+    targetNamespace="http://tempuri.org/Report.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/Report.xsd"
+    xmlns:mstns="http://tempuri.org/Report.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="Report">
+		<xs:complexType>
+			<xs:sequence>
+
+				<xs:element name="GlobalSettings" minOccurs="0" maxOccurs="1">
+					
+				</xs:element>
+				
+				<xs:element name="DataSets" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							
+							<xs:element name="QuestionDataSet" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+                    <xs:element name="Questionnnaire" minOccurs="1" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:attribute name="Id" type="xs:integer" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="QuestionCode" minOccurs="1" maxOccurs="10">
+											<xs:complexType>
+												<xs:attribute name="Code" type="xs:string" use="required" />
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Value" minOccurs="1" maxOccurs="10">
+											<xs:complexType>
+                        <xs:attribute name="QuestionCode" type="xs:string" />
+                        <xs:attribute name="Type" type="DataSetValues" use="required" />
+                        <xs:attribute name="AliasName" type="xs:string" />
+                      </xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Code" type="xs:string" />
+								</xs:complexType>
+							</xs:element>
+
+              <xs:element name="DynamicSQLDataSet" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="Code" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+
+              <xs:element name="SQLDataSet" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="Code" type="xs:string" use="required" />
+									<xs:attribute name="Type" type="SQLDataSetTypes" use="required" />
+									<xs:attribute name="SelectCommand" type="xs:string" use="required" />
+								</xs:complexType>
+							</xs:element>
+							
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="Widgets" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+
+              <xs:element name="WidgetTable" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Row" minOccurs="0" maxOccurs="3">
+                      <xs:complexType>
+                        <xs:attribute name="Code" type="xs:string" use="required"/>
+                        <xs:attribute name="Caption" type="xs:string" />
+                        <xs:attribute name="ColumnSortType" type="ColumnSortTypes"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Column" minOccurs="0" maxOccurs="3">
+                      <xs:complexType>
+                        <xs:attribute name="Code" type="xs:string" use="required" />
+                        <xs:attribute name="Caption" type="xs:string" />
+                        <xs:attribute name="ColumnSortType" type="ColumnSortTypes"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Cell" minOccurs="0" maxOccurs="3">
+                      <xs:complexType>
+                        <xs:attribute name="Code" type="xs:string" use="required" />
+                        <xs:attribute name="Caption" type="xs:string" />
+                        <xs:attribute name="Format" type="xs:string" />
+                        <xs:attribute name="ShowGrandTotal" type="Boolean" />
+                        <xs:attribute name="SummaryDisplayType" type="SummaryDisplayTypes" />
+                        <xs:attribute name="HorizontalAlign" type="HorizontalAlignTypes" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  
+                  <xs:attribute name="Code" type="xs:string" use="required"/>
+                  <xs:attribute name="DataSet" type="xs:string" use="required"/>
+                  <xs:attribute name="Title" type="xs:string" />
+                  <xs:attribute name="Width" type="xs:string" />
+                  <xs:attribute name="Height" type="xs:string" />
+                  <xs:attribute name="ShowExportToExcel" type="Boolean" />
+                  <xs:attribute name="ShowHorizontalScrollBar" type="Boolean" />
+                  <xs:attribute name="ShowColumnGrandTotals" type="Boolean" />
+                  <xs:attribute name="ShowColumnTotals" type="Boolean" />
+                  <xs:attribute name="ShowRowGrandTotals" type="Boolean" />
+                  <xs:attribute name="ShowRowTotals" type="Boolean" />
+                  <xs:attribute name="RowsPerPage" type="xs:int" />
+                  <xs:attribute name="Panel.BorderWidth" type="xs:string" />
+                  <xs:attribute name="Panel.BorderColor" type="xs:string" />
+                  <xs:attribute name="Panel.BackColor" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+
+							<xs:element name="WidgetGraph" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Argument" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="Code" type="xs:string" use="required"/>
+                        <xs:attribute name="Name" type="xs:string"/>
+                      </xs:complexType>
+                    </xs:element>
+										<xs:element name="Serie" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+                        <xs:attribute name="Code" type="xs:string" use="required"/>
+                        <xs:attribute name="Name" type="xs:string" />
+											</xs:complexType>
+										</xs:element>
+                    <xs:element name="Value" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="Code" type="xs:string"/>
+                        <xs:attribute name="Name" type="xs:string" />
+                        <xs:attribute name="CodeX" type="xs:string"/>
+                        <xs:attribute name="CodeY" type="xs:string"/>
+                        <xs:attribute name="CodeWeight" type="xs:string"/>
+                        <xs:attribute name="Format" type="xs:string"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Legend" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="Visible" type="Boolean"/>
+                        <xs:attribute name="HorizontalPosition" type="HorizontalPositionTypes"/>
+                        <xs:attribute name="VerticalPosition" type="VerticalPositionTypes"/>
+                        <xs:attribute name="Direction" type="DirectionTypes"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Series" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Serie" minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="Name" type="xs:string" use="required"/>
+                              <xs:attribute name="Color" type="xs:string"/>
+                              <xs:attribute name="Label.Visible" type="Boolean"/>
+                              <xs:attribute name="Type" type="GraphTypes"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Axis" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="AxisY.Title.Text" type="xs:string"/>
+                        <xs:attribute name="AxisY.Visible" type="Boolean"/>
+                        <xs:attribute name="AxisY.GridLines.Visible" type="Boolean"/>
+                        <xs:attribute name="AxisY.Reverse" type="Boolean"/>
+                        <xs:attribute name="AxisY.Range.MinValue" type="xs:decimal"/>
+                        <xs:attribute name="AxisY.Range.MaxValue" type="xs:decimal"/> 
+                        <xs:attribute name="AxisY.GridSpacing" type="xs:double"/>
+                        <xs:attribute name="AxisY.Label.Staggered" type="Boolean"/>
+                        <xs:attribute name="AxisY.NumericOptions.Format" type="xs:string"/>
+                        <xs:attribute name="AxisX.Title.Text" type="xs:string"/>
+                        <xs:attribute name="AxisX.Visible" type="Boolean"/>
+                        <xs:attribute name="AxisX.GridLines.Visible" type="Boolean"/>
+                        <xs:attribute name="AxisX.Reverse" type="Boolean"/>
+                        <xs:attribute name="AxisX.Range.MinValue" type="xs:decimal"/>
+                        <xs:attribute name="AxisX.Range.MaxValue" type="xs:decimal"/> 
+                        <xs:attribute name="AxisX.GridSpacing" type="xs:double"/>
+                        <xs:attribute name="AxisX.Label.Staggered" type="Boolean"/>
+                        <xs:attribute name="AxisX.NumericOptions.Format" type="xs:string"/>
+                      </xs:complexType>
+                    </xs:element>
+									</xs:sequence>
+                  
+									<xs:attribute name="Code" type="xs:string" use="required"/>
+									<xs:attribute name="DataSet" type="xs:string" use="required" />
+                  <xs:attribute name="Type" type="GraphTypes" use="required" />
+									<xs:attribute name="Title" type="xs:string" />
+                  <xs:attribute name="Width" type="xs:string" />
+                  <xs:attribute name="Height" type="xs:string" />
+                  <xs:attribute name="Orientation" type="OrientationTypes" />
+                  <xs:attribute name="Panel.BorderWidth" type="xs:string" />
+                  <xs:attribute name="Panel.BorderColor" type="xs:string" />
+                  <xs:attribute name="Panel.BackColor" type="xs:string" />
+								</xs:complexType>
+							</xs:element>
+
+              <xs:element name="WidgetLabel" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="Code" type="xs:string" use="required"/>
+                  <xs:attribute name="Text" type="xs:string" />
+                  <xs:attribute name="Font.Name" type="xs:string" />
+                  <xs:attribute name="Font.Size" type="xs:string" />
+                  <xs:attribute name="Font.Color" type="xs:string" />
+                  <xs:attribute name="Width" type="xs:string" />
+                  <xs:attribute name="Height" type="xs:string" />
+                  <xs:attribute name="DataSet" type="xs:string" />
+                  <xs:attribute name="Panel.BorderWidth" type="xs:string" />
+                  <xs:attribute name="Panel.BorderColor" type="xs:string" />
+                  <xs:attribute name="Panel.BackColor" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="Sections" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							
+							<xs:element name="Section" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										
+										<xs:element name="Page" minOccurs="1" maxOccurs="unbounded">
+											<xs:complexType>												
+												<xs:sequence>
+
+													<xs:element name="Header" minOccurs="0" maxOccurs="1">
+														<xs:complexType>
+															<xs:attribute name="Title" type="xs:string" />
+														</xs:complexType>
+													</xs:element>
+													
+													<xs:element name="Widget" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<!--<xs:sequence>
+																<xs:element name="Argument" type="ArgumentType" minOccurs="0" maxOccurs="20" />
+															</xs:sequence>-->
+															<xs:attribute name="Code" type="xs:string" use="required" />
+														</xs:complexType>
+													</xs:element>
+													
+													<xs:element name="Footer" minOccurs="0" maxOccurs="1">
+														<xs:complexType>
+															<xs:attribute name="Title" type="xs:string" />
+														</xs:complexType>
+													</xs:element>
+
+												</xs:sequence>
+
+												<xs:attribute name="Title" type="xs:string" use="required" />
+												<xs:attribute name="Template" type="TemplateTypes" use="required" />
+												
+											</xs:complexType>
+										</xs:element>
+										
+									</xs:sequence>
+									
+									<xs:attribute name="Title" type="xs:string" />
+									
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						
+						<xs:attribute name="Title" type="xs:string" />
+						
+					</xs:complexType>
+				</xs:element>
+				
+			</xs:sequence>
+			<xs:attribute name="ReportCode" type="xs:string"/>
+			<xs:attribute name="ReportId" type="IdentifierInteger" />
+		</xs:complexType>
+	</xs:element>
+	
+	<!--  
+  
+	IdentifierInt  -->
+	<xs:simpleType name="IdentifierInteger">
+		<xs:restriction base="xs:integer">
+		</xs:restriction>
+	</xs:simpleType>
+	<!--  
+  
+	IdentifierSmallInt  -->
+	<xs:simpleType name="IdentifierSmallInt">
+		<xs:restriction base="xs:unsignedShort">
+		</xs:restriction>
+	</xs:simpleType>
+	<!--  
+  
+	CodeItemIdType  -->
+	<xs:simpleType name="CodeItemIdType">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="-1" />
+			<xs:maxInclusive value="999999999" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--  
+  
+	BooleanType  -->
+	<xs:simpleType name="Boolean">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="True" />
+			<xs:enumeration value="False" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--  
+  
+	CodeListTypes  -->
+	<xs:simpleType name="CodeListTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Embedded" />
+			<xs:enumeration value="ServerList" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--  
+  
+	Platforms  -->
+	<xs:simpleType name="Platforms">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NotDefined" />
+			<xs:enumeration value="AppDesktop" />
+			<xs:enumeration value="AppMobile" />
+			<xs:enumeration value="WebDesktop" />
+			<xs:enumeration value="WebMobile" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--  
+  
+	DataSetValues  -->
+	<xs:simpleType name="DataSetValues">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NotDefined" />
+			<xs:enumeration value="Count" />
+			<xs:enumeration value="Sum" />
+      <xs:enumeration value="Min" />
+      <xs:enumeration value="Max" />
+      <xs:enumeration value="Avg" />
+    </xs:restriction>
+	</xs:simpleType>
+	<!--  
+  
+	SQLDataSetTypes  -->
+	<xs:simpleType name="SQLDataSetTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NotDefined" />
+			<xs:enumeration value="Query" />
+			<xs:enumeration value="StoreProcedure" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--  
+  
+	GrapTypes  -->
+	<xs:simpleType name="GraphTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NotDefined" />
+			<xs:enumeration value="Pie" />
+			<xs:enumeration value="Line" />
+			<xs:enumeration value="Stacked" />
+      <xs:enumeration value="FullStacked" />
+			<xs:enumeration value="Bar" />
+      <xs:enumeration value="Bubble" />
+      <xs:enumeration value="Point" />
+      <xs:enumeration value="Stock" />
+      <xs:enumeration value="Pie3D" />
+      <xs:enumeration value="Line3D" />
+      <xs:enumeration value="Stacked3D" />
+      <xs:enumeration value="FullStacked3D" />
+      <xs:enumeration value="Bar3D" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--
+
+  SummaryDisplayTypes  -->
+	<xs:simpleType name="SummaryDisplayTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NotDefined" />
+			<xs:enumeration value="PercentOfColumn" />
+			<xs:enumeration value="PercentOfRow" />
+			<xs:enumeration value="AbsoluteVariation" />
+			<xs:enumeration value="PercentVariation" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--
+  
+  HorizontalAlignTypes  -->
+	<xs:simpleType name="HorizontalAlignTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NotSet" />
+			<xs:enumeration value="Left" />
+			<xs:enumeration value="Center" />
+			<xs:enumeration value="Right" />
+			<xs:enumeration value="Justify" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--
+  
+  ColumnSortTypes  -->
+  <xs:simpleType name="ColumnSortTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ascending" />
+      <xs:enumeration value="Descending" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--
+  
+  OrientationTypes  -->
+  <xs:simpleType name="OrientationTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Horizontal" />
+      <xs:enumeration value="Vertical" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--
+  
+  HorizontalPositionTypes  -->
+	<xs:simpleType name="HorizontalPositionTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Left" />
+			<xs:enumeration value="Center" />
+			<xs:enumeration value="Right" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--
+  
+  VerticalPositionTypes  -->
+	<xs:simpleType name="VerticalPositionTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Center" />
+			<xs:enumeration value="Bottom" />
+			<xs:enumeration value="Top" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--
+  
+  DirectionTypes  -->
+	<xs:simpleType name="DirectionTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BottomToTop" />
+			<xs:enumeration value="LeftToRight" />
+			<xs:enumeration value="RightToLeft" />
+      <xs:enumeration value="TopToBotom" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--
+  
+	TemplateTypes  -->
+	<xs:simpleType name="TemplateTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NotDefined" />
+			<xs:enumeration value="Single" />
+			<xs:enumeration value="TwoColumns" />
+			<xs:enumeration value="FourColumns" />
+			<xs:enumeration value="Grid" />
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

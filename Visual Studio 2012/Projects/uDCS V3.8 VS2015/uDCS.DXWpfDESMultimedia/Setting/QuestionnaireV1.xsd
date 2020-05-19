@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="QuestionnaireV1" targetNamespace="http://tempuri.org/QuestionnaireV1.xsd"
+           elementFormDefault="qualified" xmlns="http://tempuri.org/QuestionnaireV1.xsd"
+           xmlns:mstns="http://tempuri.org/QuestionnaireV1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!--  
+  
+  Questionnaire   -->
+  <xs:element name="Questionnaire">
+    <xs:complexType>
+      <xs:sequence>
+		  
+        <xs:annotation>
+          <xs:documentation>
+            Questionnaire Definition for the DataEntry Engine V2.2
+            This XML Schema Definition is solely intended to be used for Seitec's uDES and related systems
+          </xs:documentation>
+          <xs:appinfo>
+            Seitec's DataEntry Engine V2.0
+            Copyright 2010-2012
+            All rights reserved
+          </xs:appinfo>
+        </xs:annotation>
+        <!--  
+  
+        CodeLists/CodeItem -->
+        <xs:element name="CodeLists" minOccurs ="0" maxOccurs ="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CodeList" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    
+                    <xs:element name="CodeItem" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="CodeItemId" type="CodeItemIdType" use="required" />
+                        <xs:attribute name="Code" type="xs:string" use="optional" />
+                        <xs:attribute name="Description" type="xs:string" use="optional" />
+                        <xs:attribute name="Image" type="xs:string" use="optional" />
+                        <xs:attribute name="ParentCodeItemId" type="IdentifierSmallInt" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                    
+                  </xs:sequence>
+                  <xs:attribute name="CodeListId" type="IdentifierSmallInt" use="required" />
+                  <xs:attribute name="CodeListCode" type="xs:string" use="optional" />
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="eCodeListType" type="CodeListTypes" default="Predefined" use="optional"/>
+                  <xs:attribute name="RequiresCode" type="Boolean" default="False" use="optional" />
+                  <xs:attribute name="RequiresDescription" type="Boolean" default="True" use="optional" />
+                  <xs:attribute name="ParentCodeListId" type="IdentifierSmallInt" default="0" use="optional" />
+                </xs:complexType>
+                <xs:key name="CodeListKey">
+                  <xs:selector xpath="." />
+                  <xs:field xpath="@CodeListId" />
+                </xs:key>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!--  
+  
+        Secctions/Questions  -->
+        <xs:element name="Sections" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              
+              <xs:element name="Section" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    
+                    <xs:element name="Question" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        
+                        <xs:sequence>
+                          <xs:element name="Text" type="xs:string" />
+                          <xs:element name="Comment" type="xs:string" default="" minOccurs="0" />
+                          <xs:element name="PreAction" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="Condition" type="xs:string" use="required" />
+                              <xs:attribute name="Action" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="PostAction" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="Condition" type="xs:string" use="required" />
+                              <xs:attribute name="Action" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        
+                        <xs:attribute name="QuestionCode" type="xs:string" use="required" />
+                        <xs:attribute name="QuestionType" type="QuestionTypes" use="required" />
+                        <xs:attribute name="ScreenId" type="xs:unsignedShort" use="required" />
+                        <xs:attribute name="CodeListId" type="xs:int" default="0" use="optional" />
+                        <xs:attribute name="AuxCodeListId" type="IdentifierSmallInt" default="0" use="optional" />
+                        <xs:attribute name="ListSortType" type="ListSortTypes" default="NotDefined" use="optional" />
+                        <xs:attribute name="IsFiltered" type="Boolean" default="False" use="optional" />
+                        <xs:attribute name="ChildrenIsFiltered" type="Boolean" default="False" use="optional" />
+                        <xs:attribute name="MinResponses" type="xs:short" default="0" use="optional" />
+                        <xs:attribute name="MaxResponses" type="xs:short" default="0" use="optional" />
+                        <xs:attribute name="Default" type="xs:string" default="" use="optional" />
+                        <xs:attribute name="ExclusiveCodes" type="xs:string" default="" use="optional" />
+                        <xs:attribute name="StoreSelPosition" type="Boolean" default="False" use="optional" />
+                        <xs:attribute name="EditFormat" type="EditFormatTypes" default="NotDefined" use="optional" />
+                        <xs:attribute name="MinLength" type="xs:unsignedShort" default="0" use="optional" />
+                        <xs:attribute name="MaxLength" type="xs:unsignedShort" default="0" use="optional" />
+                        <xs:attribute name="MinValue" type="xs:float" default="0" use="optional" />
+                        <xs:attribute name="MaxValue" type="xs:float" default="0" use="optional" />
+                        <xs:attribute name="MinDate" type="xs:date" use="optional" />
+                        <xs:attribute name="MaxDate" type="xs:date" use="optional" />
+                        <xs:attribute name="IsRequired" type="Boolean" default="True" use="optional" />
+                        <xs:attribute name="Enabled" type="Boolean" default="True" use="optional" />
+                        <xs:attribute name="ReadOnly" type="Boolean" default="False" use="optional" />
+                        <xs:attribute name="HasCstValidation" type="Boolean" default="False" use="optional" />
+                        <xs:attribute name="IsSequential" type="Boolean" default="False" use="optional" />
+                        <xs:attribute name="AutoFilter" type="Boolean" default="False" use="optional" />
+                        <xs:attribute name="PivotQuestion" type="xs:string" use="optional" />
+                        <xs:attribute name="PivotQuestionType" type="PivotQuestionTypes" default="Filter" use="optional" />
+                        <xs:attribute name="SynchQuestion" type="xs:string" default="" use="optional" />
+                        <xs:attribute name="SynchQuestionType" type="SynchQuestionTypes" default="NotDefined" use="optional" />
+                        <xs:attribute name="QuoteNum" type="xs:unsignedShort" default="0" use="optional" />
+                        <xs:attribute name="MediaFile" type="xs:string" default="" use="optional" />
+                        <xs:attribute name="SummaryPosition" type="xs:unsignedShort" default="0" use="optional" />
+                        <xs:attribute name="SupPenalization" type="xs:short" default="0" use="optional" />
+                        <xs:attribute name="IsPreloaded" type="Boolean" default="False" use="optional" />
+                        <xs:attribute name="CodingType" type="CodingTypes" use="optional" default="NotDefined" />
+                      </xs:complexType>
+                    </xs:element>
+                    <!-- END OF Question -->
+                    
+                  </xs:sequence>
+                  <xs:attribute name="SectionId" type="IdentifierSmallInt" use="required" />
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="IsNode" type="Boolean" default="False" use="optional" />
+                  <xs:attribute name="NodeLevel" type="xs:unsignedByte" default="0" use="optional" />
+                  <xs:attribute name="ParentSectionId" type="IdentifierSmallInt" default="0" use="optional" />
+                  
+                </xs:complexType>
+                
+                <xs:key name="SectionKey">
+                  <xs:selector xpath="." />
+                  <xs:field xpath="@SectionId" />
+                </xs:key>
+                
+                <xs:key name="QuestionCodeKey">
+                  <xs:selector xpath=".//mstns:Question" />
+                  <xs:field xpath="@QuestionCode" />
+                </xs:key>
+                
+              </xs:element>
+              <!-- END OF Section -->
+              
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!--  
+  
+        Formats/Platforms/Screens/ItemQuests  -->
+        <xs:element name="Formats" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              
+              <xs:element name="Format" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    
+                      <xs:element name="Screen" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:sequence>
+                            
+                            <xs:element name="ItemQuest" maxOccurs="unbounded">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="Text" type="xs:string" default="" minOccurs="0" maxOccurs="1" />
+                                </xs:sequence>
+                                <xs:attribute name="Type" type="ItemQuestTypes" use="required" />
+                                <xs:attribute name="QuestionCode" type="xs:string" use="optional" />
+                                <xs:attribute name="PosX" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="PosY" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="Width" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="Height" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="Enabled" type="Boolean" default="NotDefined" use="optional" />
+                                <xs:attribute name="ReadOnly" type="Boolean" default="NotDefined" use="optional" />
+                                <xs:attribute name="Visible" type="Boolean" default="NotDefined" use="optional" />
+                                <xs:attribute name="ControlType" type="ControlTypes" default="NotDefined" use="optional" />
+                                <xs:attribute name="LabelPosX" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="LabelPosY" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="LabelWidth" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="LabelHeight" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="LabelAlign" type="TextAlignTypes" default="NotDefined" use="optional" />
+                                <xs:attribute name="LabelPosition" type="LabelPositions" default="Top" use="optional" />
+                                <xs:attribute name="CtrlPosX" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="CtrlPosY" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="CtrlWidth" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="CtrlHeight" type="xs:unsignedShort" default="0" use="optional" />
+                                <xs:attribute name="CtrlColumns" type="xs:unsignedByte" default="0" use="optional" />
+                                <xs:attribute name="CtrlRows" type="xs:unsignedByte" default="0" use="optional" />
+                                <xs:attribute name="CtrlFlowDirection" type="FlowDirectionTypes" default="Vertical" use="optional" />
+                                <xs:attribute name="ShowListLabels" type="Boolean" default="True" use="optional" />
+                                <xs:attribute name="PhotoRecording" type="PhotoRecordingTypes" default="NotDefined" use="optional" />
+                              </xs:complexType>
+                            </xs:element>
+                            <!-- END OF ItemQuest -->
+                            
+                          </xs:sequence>
+                          <xs:attribute name="ScreenId" type="IdentifierSmallInt" use="required" />
+                          <xs:attribute name="Title" type="xs:string" use="required" />
+                          <xs:attribute name="Background" type="xs:string" use="optional" />
+                          <xs:attribute name="DoubleEntry" type="Boolean" default="NotDefined" use="optional" />
+                          <xs:attribute name="FlowDirection" type="FlowDirectionTypes" default="Vertical" use="optional" />
+                          <xs:attribute name="SynchSequential" type="Boolean" default="True" use ="optional" />
+                          <xs:attribute name="SynchEnabled" type="Boolean" default="True" use="optional" />
+
+                        </xs:complexType>
+                      </xs:element>
+                      <!-- END OF Screen -->
+                          
+                  </xs:sequence>
+                  <xs:attribute name="FormatType" type="FormatTypes" use="required" />
+                  <xs:attribute name="TechPlatform" type="TechPlatformTypes" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <!-- END OF Format -->
+              
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!-- END OF Formats -->
+        
+      </xs:sequence>
+      <!--  
+
+	  Questionnaire Attributes  -->
+      <xs:attribute name="QuestionnaireId" type="IdentifierInteger" use="required" />
+      <xs:attribute name="QuestionnaireCode" type="xs:string" use="required" />
+      <xs:attribute name="GUIResolution" type="GUIResolutions" use="optional" />
+      <xs:attribute name="CustomDEAssembly" type="xs:string" use="optional" />
+      <xs:attribute name="CustomDEClass" type="xs:string" use="optional" />
+
+    </xs:complexType>
+    
+  </xs:element>
+  <!--  
+  
+  IdentifierInt  -->
+  <xs:simpleType name="IdentifierInteger">
+    <xs:restriction base="xs:integer">
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  IdentifierSmallInt  -->
+  <xs:simpleType name="IdentifierSmallInt">
+    <xs:restriction base="xs:unsignedShort">
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  CodeItemType  -->
+  <xs:simpleType name="CodeItemIdType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="-1" />
+            <xs:maxInclusive value="999999999" />
+        </xs:restriction>
+    </xs:simpleType>
+  <!--  
+  
+  BooleanType  -->
+  <xs:simpleType name="Boolean">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="True" />
+      <xs:enumeration value="False" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  ListTypes  -->
+  <xs:simpleType name="CodeListTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Predefined" />
+      <xs:enumeration value="ServerList" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  TechPlatformTypes  -->
+  <xs:simpleType name="TechPlatformTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="WinPC" />
+      <xs:enumeration value="WinPhone" />
+      <xs:enumeration value="WinTablet" />
+      <xs:enumeration value="WebPC" />
+      <xs:enumeration value="WebPhone" />
+      <xs:enumeration value="WebTablet" />
+      <xs:enumeration value="JavaPC" />
+      <xs:enumeration value="JavaPhone" />
+      <xs:enumeration value="JavaTablet" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  PhotoRecordingTypes  -->
+  <xs:simpleType name="PhotoRecordingTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="ByScreen" />
+      <xs:enumeration value="Popup" />
+      <xs:enumeration value="LoadFile" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  FormatTypes  -->
+  <xs:simpleType name="FormatTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="QuickDataEntry" />
+      <xs:enumeration value="StdDataEntry" />
+      <xs:enumeration value="FormatedDataEntry" />
+      <xs:enumeration value="Custom1" />
+      <xs:enumeration value="Custom2" />
+      <xs:enumeration value="Custom3" />
+      <xs:enumeration value="Custom4" />
+      <xs:enumeration value="Custom5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  QuestionTypes  -->
+  <xs:simpleType name="QuestionTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="StdSingle" />
+      <xs:enumeration value="StdMultiple" />
+      <xs:enumeration value="StdQuantity" />
+      <xs:enumeration value="StdCharacter" />
+      <xs:enumeration value="StdLogical" />
+      <xs:enumeration value="StdDate" />
+      <xs:enumeration value="StdTime" />
+      <xs:enumeration value="ImageSingle" />
+      <xs:enumeration value="ImageMultiple" />
+      <xs:enumeration value="MultipleSingle" />
+      <xs:enumeration value="MultipleQuantity" />
+      <xs:enumeration value="MultipleCharacter" />
+      <xs:enumeration value="MultipleLogical" />
+      <xs:enumeration value="CrossSingle" />
+      <xs:enumeration value="CrossMultiple" />
+      <xs:enumeration value="Photo" />
+      <xs:enumeration value="Video" />
+      <xs:enumeration value="GPS" />
+      <xs:enumeration value="Pivot" />
+        <xs:enumeration value="SEL13x6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  ItemQuestionnaireTypes  -->
+  <xs:simpleType name="ItemQuestTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="Question" />
+      <xs:enumeration value="Label" />
+      <xs:enumeration value="Image" />
+      <xs:enumeration value="Audio" />
+      <xs:enumeration value="Video" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  ControlTypes  -->
+  <xs:simpleType name="ControlTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="TextBox" />
+      <xs:enumeration value="RadioButton" />
+      <xs:enumeration value="CheckBox" />
+      <xs:enumeration value="ComboBox" />
+      <xs:enumeration value="ListBox" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  EditFormatTypes  -->
+  <xs:simpleType name="EditFormatTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="Numeric" />
+      <xs:enumeration value="Decimal" />
+      <xs:enumeration value="PhoneNumber" />
+      <xs:enumeration value="MailAddress" />
+      <xs:enumeration value="TextSensitive" />
+      <xs:enumeration value="NonPredictive" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  ValueTypes -->
+  <xs:simpleType name="CodingTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="Single" />
+      <xs:enumeration value="Multiple" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  TextAlingTypes  -->
+  <xs:simpleType name="TextAlignTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="Left" />
+      <xs:enumeration value="Center" />
+      <xs:enumeration value="Right" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  FlowDirectionTypes -->
+  <xs:simpleType name="FlowDirectionTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="Vertical" />
+      <xs:enumeration value="Horizontal" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  FlowDirectionTypes -->
+  <xs:simpleType name="LabelPositions">
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Left" />
+        <xs:enumeration value="Top" />
+      </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  GUIResolutions -->
+  <xs:simpleType name="GUIResolutions">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotDefined" />
+      <xs:enumeration value="240X320" />
+      <xs:enumeration value="480X640" />
+      <xs:enumeration value="800X600" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  
+  
+  SortTypes -->
+    <xs:simpleType name="ListSortTypes">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NotDefined" />
+            <xs:enumeration value="Ascending" />
+            <xs:enumeration value="Descending" />
+            <xs:enumeration value="Random" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!--  
+  
+    SynchQuestionTypes -->
+    <xs:simpleType name="SynchQuestionTypes">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotDefined" />
+          <xs:enumeration value="Enabled" />
+          <xs:enumeration value="IsRequired" />
+          <xs:enumeration value="Visible" />
+          <xs:enumeration value="PostEnabled" />
+          <xs:enumeration value="PostIsRequired" />
+          <xs:enumeration value="PostVisible" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!--  
+  
+    PivotQuestionTypes -->
+    <xs:simpleType name="PivotQuestionTypes">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NotDefined" />
+            <xs:enumeration value="Filter" />
+            <xs:enumeration value="Sequential" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!--
+  
+  END -->
+</xs:schema>

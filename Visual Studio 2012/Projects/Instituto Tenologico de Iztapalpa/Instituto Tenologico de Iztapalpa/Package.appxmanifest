@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+
+  <Identity Name="65ad2f25-9b2d-4f63-970c-4955137a0ffe"
+            Publisher="CN=Abraham"
+            Version="1.0.0.0" />
+
+  <Properties>
+    <DisplayName>Instituto Tenologico de Iztapalpa</DisplayName>
+    <PublisherDisplayName>Abraham</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+        Executable="$targetnametoken$.exe"
+        EntryPoint="Instituto_Tenologico_de_Iztapalpa.App">
+        <VisualElements
+            DisplayName="Instituto Tenologico de Iztapalapa"
+            Logo="Assets\Logo.png"
+            SmallLogo="Assets\SmallLogo.png"
+            Description="Instituto Tenologico de Iztapalapa"
+            ForegroundText="light"
+            BackgroundColor="#232323">
+            <DefaultTile ShowName="allLogos" />
+            <SplashScreen Image="Assets\SplashScreen.png" />
+        </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
